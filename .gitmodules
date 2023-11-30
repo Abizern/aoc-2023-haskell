@@ -1,0 +1,3 @@
+[submodule "aoc-utils"]
+	path = aoc-utils
+	url = https://github.com/Abizern/aoc-utils-haskell.git

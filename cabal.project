@@ -1,0 +1,4 @@
+packages:
+    aoc23.cabal
+    aoc-utils/aoc-utils.cabal
+    

@@ -1,0 +1,66 @@
+* aoc-2023-haskell
+A Cabal project for my solutions to Advent of Code 2023 puzzles using Haskell.
+
+** Usage
+This is a cabal project with a library for each days solution and an app that runs all the solutions and prints the results.
+
+There is a utility library which is added as a submodule.
+
+Build and run from the root of the project using Cabal.
+
+** Installation
+Clone the repository and the submodule.
+
+** Testing
+I'm using [[https://github.com/phadej/cabal-extras/tree/master][cabal-docspec]] installed directly, without Hackage. (I had to enable a lower version of GHC).
+
+=cabal build all=
+=cabal-docspec=
+
+from the root of the project deals with this.
+  
+** Inputs
+I'm not including my inputs.
+
+The code requires each input to be of the form =day<xx>.txt= so add the requisite ones before trying to evaluate any solution.
+
+I use [[https://github.com/wimglenn/advent-of-code-data][aocd]] to fetch and cache the inputs for my registered user id.
+
+To fetch all inputs run =./fetch_inputs.sh= from the project root. If they have been cached, this shouldn't take too long.
+For getting individual day's inputs while participating, =cd= into the input directory for that year and run =aocd > dayxx.txt= or =aocd yyyy dd |> dayxx.txt= in the inputs directory
+
+** License
+Licensed under the MIT License.
+
+** Completion
+
+ | Day | Part One | Part Two |
+ |-----+----------+----------|
+ |   1 |          |          |
+ |   2 |          |          |
+ |   3 |          |          |
+ |   4 |          |          |
+ |   5 |          |          |
+ |   6 |          |          |
+ |   7 |          |          |
+ |   8 |          |          |
+ |   9 |          |          |
+ |  10 |          |          |
+ |  11 |          |          |
+ |  12 |          |          |
+ |  13 |          |          |
+ |  14 |          |          |
+ |  15 |          |          |
+ |  16 |          |          |
+ |  17 |          |          |
+ |  18 |          |          |
+ |  19 |          |          |
+ |  20 |          |          |
+ |  21 |          |          |
+ |  22 |          |          |
+ |  23 |          |          |
+ |  24 |          |          |
+ |  25 |          |          |
+  
+
+  
