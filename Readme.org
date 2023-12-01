@@ -6,7 +6,15 @@ This is a cabal project with a library for each days solution and an app that ru
 
 There is a utility library which is added as a submodule.
 
-Build and run from the root of the project using Cabal.
+Build and run from the root of the project using cabal
+ 
+ To build 
+ 
+ =cabal build all=
+
+ While developing just use the repl and pipe data into it. To compile and run a solution for day =<d>=
+
+ =cabal run aoc23 <d>=
 
 ** Installation
 Clone the repository and the submodule.
@@ -17,7 +25,7 @@ I'm using [[https://github.com/phadej/cabal-extras/tree/master][cabal-docspec]] 
 =cabal build all=
 =cabal-docspec=
 
-from the root of the project deals with this.
+from the root of the project to run the tests.
   
 ** Inputs
 I'm not including my inputs.
@@ -36,7 +44,7 @@ Licensed under the MIT License.
 
  | Day | Part One | Part Two |
  |-----+----------+----------|
- |   1 |          |          |
+ |   1 |    55477 |    54431 |
  |   2 |          |          |
  |   3 |          |          |
  |   4 |          |          |
