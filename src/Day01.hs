@@ -1,4 +1,5 @@
 -- usage: cabal run aoc23 1
+--
 -- description: Find digits in a string
 
 module Day01 where
