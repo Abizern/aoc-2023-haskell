@@ -29,7 +29,7 @@ library
     build-depends:
         aoc-utils,
         base ^>=4.19.0.0,
-        split
+        split,
 
     -- Directories containing source files.
     hs-source-dirs:   src
