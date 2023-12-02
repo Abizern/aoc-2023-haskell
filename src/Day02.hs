@@ -1,6 +1,6 @@
 -- usage: cabal run aoc23 02
 --
--- description:
+-- description: Count configurations of items parsed from a string
 
 module Day02 where
 
