@@ -1,12 +1,12 @@
 -- usage: cabal run aoc23 03
--- description: 
+-- description:
 
 module Day03 where
 
 import AOCUtils.Input (makeTitle)
 
 title :: String
-title = "--- Add day title here ---"
+title = "--- Day 4: Scratchcards ---"
 
 solve :: String -> String
 solve s = mconcat [header, "Part 1: ", part1, "\nPart 2: ", part2, "\n"]
