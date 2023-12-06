@@ -15,14 +15,12 @@ title = "--- Day 6: Wait For It ---"
 solve :: String -> String
 solve s = mconcat ["\n", header, "Part 1: ", part1, "\nPart 2: ", part2, "\n"]
   where
-    pairs = parsePairs s
-    large = parseLarge s
     header = makeTitle title
-    part1 = show $ solve1 pairs
-    part2 = show $ solve2 large
+    part1 = show . solve1 $ parsePairs s
+    part2 = show . solve2 $ parseLarge s
 
 solve1 :: [(Int, Int)] -> Int
-solve1 pairs = product $ map nrSolutions pairs
+solve1 = product . map nrSolutions
 
 solve2 :: (Int, Int) -> Int
 solve2 = nrSolutions
@@ -34,7 +32,7 @@ parsePairs s = result
     ls = map parseLine $ lines s
     result = case ls of
       (x : y : _) -> zip x y
-      _ -> []
+      _ -> error "Incorrect input"
 
 parseLarge :: String -> (Int, Int)
 parseLarge s = case lines s of
