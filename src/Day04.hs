@@ -1,5 +1,5 @@
 -- usage: cabal run aoc23 04
--- description:
+-- description: Read winning lottery numbers and count generations without excessive iteration
 
 module Day04 where
 
