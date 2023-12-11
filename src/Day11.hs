@@ -1,5 +1,5 @@
 -- usage: cabal run aoc23 11
--- description:
+-- description: Distances between points in a grid, handling changed positions
 
 module Day11 where
 
@@ -8,7 +8,7 @@ import AOCUtils.Input (makeTitle)
 import Data.List (tails, transpose)
 
 title :: String
-title = "--- Add day title here ---"
+title = "--- Day 11: Cosmic Expansion ---"
 
 solve :: String -> String
 solve s = mconcat [header, "Part 1: ", part1, "\nPart 2: ", part2, "\n"]
