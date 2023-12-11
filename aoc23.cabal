@@ -39,7 +39,8 @@ library
         Day23
         Day24
         Day25
-    other-extensions: OverloadedStrings
+    other-extensions: OverloadedStrings,
+                      DuplicateRecordFields
     build-depends:
                   aoc-utils,
                   base ^>=4.19.0.0,
