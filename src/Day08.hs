@@ -1,5 +1,5 @@
 -- usage: cabal run aoc23 8
--- description: Follow a route, and then find a cycle length.
+-- description: Follow a route, and then find a cycle length. Spot the required optimisation.
 
 module Day08 where
 
@@ -20,17 +20,17 @@ solve s = mconcat ["\n", header, "Part 1: ", part1, "\nPart 2: ", part2, "\n"]
     part2 = show $ solve2 input
 
 solve1 :: (String, Map String (String, String)) -> Int
-solve1 = runMapping
+solve1 = runMapping "AAA" "ZZZ"
 
 solve2 :: (String, Map String (String, String)) -> Int
 solve2 = runGhostMapping
 
-runMapping :: (String, Map String (String, String)) -> Int
-runMapping (instructions, mapping) = length $ run ["AAA"] (cycle instructions)
+runMapping :: String -> String -> (String, Map String (String, String)) -> Int
+runMapping input term (instructions, mapping) = length $ run [input] (cycle instructions)
   where
     run accum ins = case (accum, ins) of
       (acc@(a : as), i : is)
-        | a == "ZZZ" -> as
+        | term `isSuffixOf` a -> as
         | i == 'L' -> run (fst value : acc) is
         | i == 'R' -> run (snd value : acc) is
         | otherwise -> as
@@ -41,26 +41,10 @@ runMapping (instructions, mapping) = length $ run ["AAA"] (cycle instructions)
       _ -> accum
 
 runGhostMapping :: (String, Map String (String, String)) -> Int
-runGhostMapping (instructions, mapping) = runGhostMapping' 0 startPoints (cycle instructions)
+runGhostMapping args@(_, mapping) = foldl lcm 1 cycleLengths
   where
-    routingFunction = mapper mapping
     startPoints = startingPoints $ Map.keys mapping
-    isEndPoint :: [String] -> Bool
-    isEndPoint = foldr (\pos accum -> accum && ("Z" `isSuffixOf` pos)) True
-    runGhostMapping' :: Int -> [String] -> String -> Int
-    runGhostMapping' iterations ps is = case (iterations, ps, is) of
-      (iters, x, y : ys)
-        | isEndPoint x -> iters
-        | otherwise -> runGhostMapping' (iters + 1) newPoints ys
-        where
-          newPoints = map (routingFunction y) x
-      _ -> error "There should always be something in the accumulator"
-
-mapper :: Map String (String, String) -> Char -> String -> String
-mapper m direction s = case (Map.lookup s m, direction) of
-  (Just x, 'L') -> fst x
-  (Just x, 'R') -> snd x
-  _ -> error "No value for this key"
+    cycleLengths = [l | sp <- startPoints, let l = runMapping sp "Z" args]
 
 startingPoints :: [String] -> [String]
 startingPoints = filter ("A" `isSuffixOf`)
