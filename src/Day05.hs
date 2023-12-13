@@ -4,6 +4,8 @@
 module Day05 where
 
 import AOCUtils.Input (makeTitle, newlines)
+import Data.List.Split (splitOn)
+import Data.Range
 
 title :: String
 title = "--- Day 5: If You Give A Seed A Fertilizer ---"
@@ -22,11 +24,9 @@ solve1 = id
 solve2 :: String -> String
 solve2 = id
 
+parseInput s = undefined
+
 -- These functions are just here to make working with the REPL easier.
 
-rawExample :: IO String
-rawExample = readFile "examples/ex05.txt"
-
-parseInput s = raw
-  where
-    raw = lines s
+example :: IO String
+example = readFile "examples/ex05.txt"
