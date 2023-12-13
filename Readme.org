@@ -40,7 +40,7 @@ For getting individual day's inputs while participating, =cd= into the input dir
 ** License
 Licensed under the MIT License.
 
-** Completion
+** Progress
 
  | Day |   Part One |   Rank |       Part Two |  Rank |
  |-----+------------+--------+----------------+-------|
