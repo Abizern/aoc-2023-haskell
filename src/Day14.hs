@@ -35,7 +35,7 @@ roll = roll' (0 :: Int)
     roll' n _ = replicate n '.'
 
 tilt :: Grid -> Grid
-tilt g = transpose $ map roll $ transpose g
+tilt = transpose . map roll . transpose
 
 load :: Grid -> Int
 load g = sum $ zipWith (*) [1 :: Int ..] (reverse rocks)
