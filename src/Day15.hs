@@ -1,23 +1,37 @@
 -- usage: cabal run aoc23 15
--- description: 
+-- description:
 
 module Day15 where
 
 import AOCUtils.Input (makeTitle)
+import Data.Char (ord)
+import Data.List (foldl')
+import Data.List.Split (splitOn)
 
 title :: String
-title = "--- Add day title here ---"
+title = "--- Day 15: Lens Library ---"
 
 solve :: String -> String
-solve s = mconcat [header, "Part 1: ", part1, "\nPart 2: ", part2, "\n"]
+solve s = mconcat ["\n", header, "Part 1: ", part1, "\nPart 2: ", part2, "\n"]
   where
-    input = s
+    input = parseInput s
     header = makeTitle title
     part1 = show $ solve1 input
     part2 = show $ solve2 input
 
-solve1 :: String -> String
-solve1 = id
+solve1 :: [String] -> Int
+solve1 = sum . map hasher
 
-solve2 :: String -> String
-solve2 = id
+solve2 :: [String] -> Int
+solve2 _ = 2
+
+hasher :: String -> Int
+hasher = foldl' hasher' 0
+  where
+    hasher' accum ch = 17 * (accum + ord ch) `mod` 256
+
+parseInput :: String -> [String]
+parseInput = splitOn "," . takeWhile (/= '\n')
+
+example :: IO String
+example = readFile "examples/ex15.txt"
