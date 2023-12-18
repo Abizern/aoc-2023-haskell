@@ -17,15 +17,16 @@ solve :: String -> String
 solve s = mconcat ["\n", header, "Part 1: ", part1, "\nPart 2: ", part2, "\n"]
   where
     input = corners . parseInput $ s
+    input2 = corners . parseInput2 $ s
     header = makeTitle title
     part1 = show $ solve1 input
-    part2 = show $ solve2 input
+    part2 = show $ solve2 input2
 
 solve1 :: [Corner] -> Int
 solve1 = totalArea
 
 solve2 :: [Corner] -> Int
-solve2 _ = 2
+solve2 = totalArea
 
 type Corner = (Int, Int)
 
@@ -36,6 +37,16 @@ parseInput = map parseInstruction . lines
   where
     parseInstruction s = case splitOn " " s of
       (x : y : _) -> (x, read y)
+      _ -> error "malformed input"
+
+parseInput2 :: String -> [Instruction]
+parseInput2 = map parseInstruction2 . lines
+  where
+    parseInstruction2 line = case splitOn " " line of
+      [_, _, ['(', '#', a, b, c, d, e, '0', ')']] -> ("R", hexToDec [a, b, c, d, e])
+      [_, _, ['(', '#', a, b, c, d, e, '1', ')']] -> ("D", hexToDec [a, b, c, d, e])
+      [_, _, ['(', '#', a, b, c, d, e, '2', ')']] -> ("L", hexToDec [a, b, c, d, e])
+      [_, _, ['(', '#', a, b, c, d, e, '3', ')']] -> ("U", hexToDec [a, b, c, d, e])
       _ -> error "malformed input"
 
 corners :: [Instruction] -> [Corner]
@@ -62,6 +73,9 @@ internalArea cs = sArea - (p `div` 2) + 1
   where
     sArea = shoelaceArea cs
     p = perimeter cs
+
+hexToDec :: String -> Int
+hexToDec hexString = read ("0x" ++ hexString) :: Int
 
 totalArea :: [Corner] -> Int
 totalArea cs = p + iArea
