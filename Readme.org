@@ -48,7 +48,7 @@ Licensed under the MIT License.
  |   2 |       2162 |  22610 |          72513 | 21691 | Cube Conundrum                  |
  |   3 |     525911 | 113622 |         467835 | 98957 | Gear Ratios                     |
  |   4 |      26346 |  24758 |        8467762 | 38000 | Scratchcards                    |
- |   5 |            |        |                |       | If You Give A Seed A Fertilizer |
+ |   5 |  650599855 | 102932 |                |       | If You Give A Seed A Fertilizer |
  |   6 |    2344708 |  37412 |       30125202 | 35974 | Wait For It                     |
  |   7 |  253313241 |  13241 |      253362743 | 13727 | Camel Cards                     |
  |   8 |      19667 |  30001 | 19185263738117 | 59049 | Haunted Wasteland               |
