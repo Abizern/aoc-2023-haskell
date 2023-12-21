@@ -1,6 +1,7 @@
 -- usage: cabal run aoc23 10
 -- description: Follow a path through a grid.
 -- I got carried away with using BFS, but I wanted an excuse to try out the Algorithm.Search package.
+-- Part 2 uses Shoelace formula and Pick's theorem, the same way as Day18
 
 module Day10 where
 
@@ -44,7 +45,7 @@ solve1 :: Grid -> Int
 solve1 g = length (perimeter g) `div` 2
 
 solve2 :: Grid -> Int
-solve2 _ = 2
+solve2 = internalArea . perimeter
 
 perimeter :: Grid -> [(Int, Int)]
 perimeter g = fst state : points
@@ -55,6 +56,17 @@ perimeter g = fst state : points
       Just list -> list
       _ -> error "No path"
     points = map fst path
+
+shoelaceArea :: [(Int, Int)] -> Int
+shoelaceArea ps = abs . (`div` 2) $ sum (zipWith det ps (drop 1 $ cycle ps))
+  where
+    det (r1, c1) (r2, c2) = r1 * c2 - r2 * c1
+
+internalArea :: [(Int, Int)] -> Int
+internalArea ps = sArea - (p `div` 2) + 1
+  where
+    sArea = shoelaceArea ps
+    p = length ps
 
 -- Find the position of the Start point
 getStart :: Grid -> (Int, Int)
