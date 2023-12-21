@@ -60,11 +60,11 @@ Licensed under the MIT License.
  |  14 |      19391 |  19391 |          86069 | 29054 | Parabolic Reflector Dish        |
  |  15 |     505379 |  20472 |         263211 | 32117 | Lens Library                    |
  |  16 |       6361 |  29258 |           6701 | 28428 | The Floor Will Be Lava          |
- |  17 |            |        |                |       |                                 |
+ |  17 |            |        |                |       | Clumsy Crucible                 |
  |  18 |      40745 |  12609 | 90111113594927 |  8435 | Lavaduct Lagoon                 |
- |  19 |            |        |                |       |                                 |
- |  20 |            |        |                |       |                                 |
- |  21 |            |        |                |       |                                 |
+ |  19 |            |        |                |       | Aplenty                         |
+ |  20 |            |        |                |       | Pulse Propagation               |
+ |  21 |            |        |                |       | Step Counter                    |
  |  22 |            |        |                |       |                                 |
  |  23 |            |        |                |       |                                 |
  |  24 |            |        |                |       |                                 |
