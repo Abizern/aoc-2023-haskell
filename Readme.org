@@ -53,7 +53,7 @@ Licensed under the MIT License.
  |   7 |  253313241 |  13241 |      253362743 | 13727 | Camel Cards                     |
  |   8 |      19667 |  30001 | 19185263738117 | 59049 | Haunted Wasteland               |
  |   9 | 1901217887 |  14603 |            905 | 14054 | Mirage Maintenance              |
- |  10 |            |        |                |       | Pipe Maze                       |
+ |  10 |       6903 |  60309 |                |       | Pipe Maze                       |
  |  11 |    9543156 |  32200 |   625243292686 | 29772 | Cosmic Expansion                |
  |  12 |       7344 |  18273 |  1088006519007 |  8078 | Hot Springs                     |
  |  13 |      37381 |  12595 |          28210 |  9562 | Point of Incidence              |
