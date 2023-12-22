@@ -1,5 +1,5 @@
 -- usage: cabal run aoc23 17
--- description:
+-- description: I used A* rather than Djikstra, because it's easier with the Algorithm.Search package.
 
 module Day17 where
 
@@ -15,7 +15,7 @@ data Direction = North | East | South | West deriving (Eq, Show, Ord)
 
 data State = State
   { position :: (Int, Int),
-    directien :: Direction,
+    direction :: Direction,
     stepCount :: Int
   }
   deriving (Eq, Show, Ord)
@@ -54,30 +54,37 @@ solve s = mconcat ["\n", header, "Part 1: ", part1, "\nPart 2: ", part2, "\n"]
     part2 = show $ solve2 input
 
 solve1 :: Grid -> Int
-solve1 = minimumHeatLoss
+solve1 = minimumHeatLoss 0 3
 
 solve2 :: Grid -> Int
-solve2 _ = 2
+solve2 = minimumHeatLoss 4 10
 
-minimumHeatLoss :: Grid -> Int
-minimumHeatLoss grid = fst . fromJust . aStar nextStates cost estimate isTarget $ start
+minimumHeatLoss :: Int -> Int -> Grid -> Int
+minimumHeatLoss minstep maxstep grid = fst . fromJust . aStar nextStates cost estimate isTarget $ start
   where
     isInGrid st = row `elem` [1 .. nrows grid] && col `elem` [1 .. ncols grid]
       where
         (row, col) = position st
     dist (r1, c1) (r2, c2) = abs (r1 - r2) + abs (c1 - c2)
     end = (nrows grid, ncols grid)
-    nextStates = getNextStates `pruning` (not . isInGrid)
+    nextStates = getNextStates minstep maxstep `pruning` (not . isInGrid)
     cost _ st = grid ! position st
     estimate = dist end . position
-    isTarget st = position st == end
+    isTarget st = position st == end && stepCount st >= minstep
     start = State (1, 1) East 0
 
-getNextStates :: State -> [State]
-getNextStates st = filter (\s -> stepCount s <= 3) $ map (move st) possibleDirections
+getNextStates :: Int -> Int -> State -> [State]
+getNextStates minstep maxstep st
+  | mustKeepGoing = filter (\d -> direction d == dir) possibleDirections
+  | otherwise = possibleDirections
   where
-    dir = directien st
-    possibleDirections = filter (\d -> d /= opposite dir) allDirections
+    dir = direction st
+    mustKeepGoing = stepCount st `elem` [1 .. pred minstep]
+    possibleDirections =
+      filter (\s -> stepCount s <= maxstep) $
+        filter (\s -> position s /= (1, 1)) $
+          map (move st) $
+            filter (\d -> d /= opposite dir) allDirections
 
 parseInput :: String -> Grid
 parseInput = fromLists . map (map digitToInt) . lines
