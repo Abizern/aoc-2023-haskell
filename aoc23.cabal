@@ -47,6 +47,7 @@ library
                   containers >= 0.6.8 || >= 0.7,
                   matrix >= 0.3.6,
                   MemoTrie >= 0.6.0,
+                  parallel >= 3.2.0,
                   range >= 0.3.0,
                   search-algorithms >=0.3.0,
                   split >= 0.2.4
