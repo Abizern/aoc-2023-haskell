@@ -65,8 +65,8 @@ Licensed under the MIT License.
  |  19 |            |        |                |       | Aplenty                         |
  |  20 |            |        |                |       | Pulse Propagation               |
  |  21 |            |        |                |       | Step Counter                    |
- |  22 |            |        |                |       |                                 |
- |  23 |            |        |                |       |                                 |
+ |  22 |            |        |                |       | Sand Slabs                      |
+ |  23 |       2370 |  12114 |           6546 |  8829 | A Long Walk                     |
  |  24 |            |        |                |       |                                 |
  |  25 |            |        |                |       |                                 |
   

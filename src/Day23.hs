@@ -31,10 +31,10 @@ solve s = mconcat ["\n", header, "Part 1: ", part1, "\nPart 2: ", part2, "\n"]
     part2 = show $ solve2 input
 
 solve1 :: Grid -> Int
-solve1 = maxNrSteps
+solve1 = maxNrSteps True
 
 solve2 :: Grid -> Int
-solve2 _ = 2
+solve2 = maxNrSteps False
 
 isinGrid :: Grid -> Coord -> Bool
 isinGrid grid (row, col) = row `elem` [1 .. nrows grid] && col `elem` [1 .. ncols grid]
@@ -59,8 +59,8 @@ junctions grid =
         > 2
   ]
 
-makeGraph :: Grid -> JGraph
-makeGraph grid = makeGraph' initialGraph (Set.singleton start) [(0, start)] points
+makeGraph :: Bool -> Grid -> JGraph
+makeGraph icy grid = makeGraph' initialGraph (Set.singleton start) [(0, start)] points
   where
     start = startPoint grid
     end = endPoint grid
@@ -74,13 +74,13 @@ makeGraph grid = makeGraph' initialGraph (Set.singleton start) [(0, start)] poin
       | n /= 0 && p `elem` points = makeGraph' (Map.insertWith (++) j [(p, n)] graph) seen ss (j : js)
       | otherwise = makeGraph' graph seen' (ss ++ map (\pt -> (succ n, pt)) candidates) (j : js)
       where
-        candidates = nextPoints grid seen p
+        candidates = nextPoints icy grid seen p
         ptSet = Set.fromList candidates
         seen' = Set.union seen ptSet
     makeGraph' a b c d = error $ mconcat ["err", show a, "\n", show b, "\n", show c, "\n", show d]
 
-nextPoints :: Grid -> Set Coord -> Coord -> [Coord]
-nextPoints grid seen (row, col) = newPoints
+nextPoints :: Bool -> Grid -> Set Coord -> Coord -> [Coord]
+nextPoints icy grid seen (row, col) = newPoints
   where
     newPoints = filter notForest . filter notSeen . filter inGrid $ candidates
     inGrid = isinGrid grid
@@ -88,16 +88,16 @@ nextPoints grid seen (row, col) = newPoints
     notForest pt = grid ! pt /= '#'
     candidates = case grid ! (row, col) of
       ch
-        | ch == '>' -> [(row, succ col)]
-        | ch == '<' -> [(row, pred col)]
-        | ch == '^' -> [(pred row, col)]
-        | ch == 'v' -> [(succ row, col)]
+        | icy && ch == '>' -> [(row, succ col)]
+        | icy && ch == '<' -> [(row, pred col)]
+        | icy && ch == '^' -> [(pred row, col)]
+        | icy && ch == 'v' -> [(succ row, col)]
         | otherwise -> [(row, succ col), (row, pred col), (succ row, col), (pred row, col)]
 
-maxNrSteps :: Grid -> Int
-maxNrSteps grid = maxNrSteps' Set.empty 0 start
+maxNrSteps :: Bool -> Grid -> Int
+maxNrSteps icy grid = maxNrSteps' Set.empty 0 start
   where
-    graph = makeGraph grid
+    graph = makeGraph icy grid
     start = startPoint grid
     end = endPoint grid
     maxNrSteps' :: Set Coord -> Int -> Coord -> Int
